@@ -16,13 +16,17 @@ export const getAccessToken = async () => {
       password: process.env.PASSWORD!,
     }));
     accessToken = response.data.access_token;
-    console.log('Retrieved Access Tokasdasaen', accessToken); // Verify token retrieval
+    console.log('Retrieved Access token', accessToken); // Verify token retrieval
     return accessToken;
   } catch (error: any) {
     console.error('Error fetching access token:', error.response?.data || error.message);
     throw error;
   }
 };
+
+//database
+//whevner create tokens write somethign expires at 
+//user id 
 
 const instance = axios.create({
   baseURL: process.env.SERVICENOW_BASE_URL,

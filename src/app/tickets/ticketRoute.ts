@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
-import { getServiceNowTickets, createServiceNowTicket, getAccessToken } from './ticketService';
+import { getServiceNowTickets, createServiceNowTicket } from './ticketService';
+import { getAccessToken } from '../../utils';
 
 const router = express.Router();
 

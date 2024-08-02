@@ -10,6 +10,7 @@ import { authRoute } from './app/auth/authRoute';
 import { ticketRoute } from './app/tickets/ticketRoute';
 import { authMiddleware } from './middlewares/auth';
 import { verifyPermissions } from './middlewares/permission';
+import { salesforceRoute } from './app/salesforce/salesforceRoute';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,6 +31,7 @@ router.get('/health', async (req: Request, res: Response) => {
 router.use('/auth', authRoute);
 
 router.use('/tickets', ticketRoute);
+router.use('/salesforce', salesforceRoute);
 
 console.log("here in index")
 
