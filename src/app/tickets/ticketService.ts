@@ -16,7 +16,7 @@ export const getAccessToken = async () => {
       password: process.env.PASSWORD!,
     }));
     accessToken = response.data.access_token;
-    console.log('Retrieved Access Token:sioemthign', accessToken); // Verify token retrieval
+    console.log('Retrieved Access Token', accessToken); // Verify token retrieval
     return accessToken;
   } catch (error: any) {
     console.error('Error fetching access token:', error.response?.data || error.message);
