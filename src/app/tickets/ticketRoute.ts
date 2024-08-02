@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', async (req: Request, res: Response) => {
   try {
     const token = await getAccessToken(); // Ensure the token is fetched
-    console.log('Access Token:adasd', token); // Log the token to verify
+    console.log('Access Token:', token); // Log the token to verify
     const tickets = await getServiceNowTickets(); // Fetch tickets
     res.json(tickets);
   } catch (error: any) {
