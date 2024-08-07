@@ -16,17 +16,13 @@ export const getAccessToken = async () => {
       password: process.env.PASSWORD!,
     }));
     accessToken = response.data.access_token;
-    console.log('Retrieved Access token', accessToken); // Verify token retrieval
+    console.log('Retrieved Access token', accessToken, 'hjere'); 
     return accessToken;
   } catch (error: any) {
-    console.error('Error fetching access token:', error.response?.data || error.message);
+    console.error('Error fetching access token:', error.response?.data || error.message, error);
     throw error;
   }
 };
-
-//database
-//whevner create tokens write somethign expires at 
-//user id 
 
 const instance = axios.create({
   baseURL: process.env.SERVICENOW_BASE_URL,
@@ -34,24 +30,25 @@ const instance = axios.create({
 
 instance.interceptors.request.use(config => {
   if (accessToken) {
-    console.log('Setting Authorization Header:', `Bearer ${accessToken}`); // Verify token usage
+    console.log('Setting Authorization Header:', `Bearer ${accessToken}`);
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
   return config;
 });
 
 export const getServiceNowTickets = async () => {
+  getAccessToken()
   try {
     const response = await instance.get('/api/now/table/incident');
-    console.log('ServiceNow Tickets Response:', response.data); // Verify response
-    return response.data;
+    console.log('ServiceNow Tickets Response:', response.data); 
   } catch (error: any) {
-    console.error('Error fetching tickets:', error.response?.data || error.message);
+    console.error('Error fetching tickets:', error.response?.data || error.message, error);
     throw error;
   }
 };
 
 export const createServiceNowTicket = async (data: any) => {
+  getAccessToken()
   try {
     const response = await instance.post('/api/now/table/incident', data);
     return response.data;

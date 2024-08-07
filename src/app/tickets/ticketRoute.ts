@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.get('/', async (req: Request, res: Response) => {
   try {
-    const token = await getAccessToken(); // Ensure the token is fetched
-    console.log('Access Token:  ', token); // Log the token to verify
-    const tickets = await getServiceNowTickets(); // Fetch tickets
+    // const token = await getAccessToken(); 
+    // console.log('Access Token:  ', token); 
+    const tickets = await getServiceNowTickets(); 
     res.json(tickets);
   } catch (error: any) {
     res.status(500).json({ error: error.message });

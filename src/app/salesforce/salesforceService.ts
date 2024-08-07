@@ -4,15 +4,18 @@ let salesforceAccessToken: string | null = null;
 
 const tokenInstance = axios.create({
   baseURL: process.env.SALESFORCE_TOKEN_URL,
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
 });
-
 export const getSalesforceAccessToken = async () => {
   try {
     const response = await tokenInstance.post('', new URLSearchParams({
-      grant_type: 'client_credentials',
+      grant_type: 'authorization_code',
       client_id: process.env.SALESFORCE_CLIENT_ID!,
       client_secret: process.env.SALESFORCE_CLIENT_SECRET!
     }));
+    console.log(response)
     salesforceAccessToken = response.data.access_token;
     console.log(salesforceAccessToken, '---------------token sales force')
     return salesforceAccessToken;

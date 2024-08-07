@@ -11,6 +11,7 @@ import { ticketRoute } from './app/tickets/ticketRoute';
 import { authMiddleware } from './middlewares/auth';
 import { verifyPermissions } from './middlewares/permission';
 import { salesforceRoute } from './app/salesforce/salesforceRoute';
+import { serviceNowRoute } from './app/ServicenowCert/serviceNowRoute';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,8 +33,7 @@ router.use('/auth', authRoute);
 
 router.use('/tickets', ticketRoute);
 router.use('/salesforce', salesforceRoute);
-
-console.log("here in index")
+router.use('/servicenow', serviceNowRoute)
 
 app.listen(PORT, () => {
   console.log(`Server is listening on: ${PORT}`);
